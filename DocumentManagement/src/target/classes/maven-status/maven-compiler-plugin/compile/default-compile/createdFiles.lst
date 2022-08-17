@@ -1,0 +1,13 @@
+com\documentmanagement\repository\iDocumentRepository.class
+com\documentmanagement\entity\Documents.class
+com\documentmanagement\repository\iAccountRepository.class
+com\documentmanagement\service\AccountService.class
+com\documentmanagement\config\ApplicationConfig.class
+com\documentmanagement\controller\AccountController.class
+com\documentmanagement\exception\GlobalExceptionHandler.class
+com\documentmanagement\response\DocumentResponse.class
+com\documentmanagement\exception\CustomException.class
+com\documentmanagement\entity\Account.class
+com\documentmanagement\DocumentmanagementApplication.class
+com\documentmanagement\request\DocumentRequest.class
+com\documentmanagement\response\FileUploadResponse.class
