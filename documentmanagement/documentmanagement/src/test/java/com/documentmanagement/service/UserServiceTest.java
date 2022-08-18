@@ -1,7 +1,5 @@
 package com.documentmanagement.service;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -34,14 +32,13 @@ public class UserServiceTest {
 		UserResponse userResponse=new UserResponse();
 		userResponse.setUserId("U01");
 		Mockito.when(userRepository.save(Mockito.any())).thenReturn(testUser);
-		List<User> res =userService.viewInfo();
-		Assert.assertSame(res, ("U01"));
-		
-		
-		/*Assert.assertEquals(res.getBody(), res);
-		Assert.assertSame(((User) res).getUserId().equalsIgnoreCase("U01"));*/
-		
+		Assert.assertNotSame(userService.viewInfo(), ("test@gmail.com"));
 	}
 	
-
+	/*@Test
+	public void updateStatusTest()
+	{
+		
+	}
+*/
 }

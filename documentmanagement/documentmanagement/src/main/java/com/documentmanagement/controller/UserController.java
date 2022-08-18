@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,7 +42,7 @@ public class UserController {
 	 * 
 	 * @return static data about user
 	 */
-	@Operation(summary = "Get list of users with document list ", description = "Get the list of users with their document list", tags = "CreateAPI")
+	@Operation(summary = "Get list of users with document list ", description = "Get the list of users with their document list", tags = "GetAPI")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Found the list of users"),
 			@ApiResponse(responseCode = "500", description = "Internal Server Error"),
 			@ApiResponse(responseCode = "400", description = "Not Found Error") })

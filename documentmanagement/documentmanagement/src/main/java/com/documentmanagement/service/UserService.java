@@ -48,9 +48,9 @@ public class UserService {
 		accountDocument.add(doc1);
 		accountDocument.add(doc2);
 		accountDocument.add(doc3);
-		User user1 = new User("U01", "AnnJenson", "Walmart", "Ann", "Jenson", "annjenson@email.com",
-				"12334567890", "developer", LocalDateTime.now(), "U01-AnnJenson", LocalDateTime.now(),
-				"U01-AnnJenson", "USR01", accountDocument);
+		User user1 = new User("U01", "AnnJenson", "Walmart", "Ann", "Jenson", "annjenson@email.com", "12334567890",
+				"developer", LocalDateTime.now(), "U01-AnnJenson", LocalDateTime.now(), "U01-AnnJenson", "USR01",
+				accountDocument);
 		userRepository.save(user1);
 		logger.info("Fetching the user data along with account documents");
 		return userRepository.findAll();
@@ -77,25 +77,31 @@ public class UserService {
 					List<AccountDocument> documents = documentList.stream()
 							.filter(docId -> docId.getDocumentId().equals(userRequest.getDocumentId()))
 							.collect(Collectors.toList());
-					logger.info("Document list :{} ",documents);
+					logger.info("Document list :{} ", documents);
 					if (documents.isEmpty()) {
 						throw new CustomException("No such document found for given userId");
-					}
-				else
-				{
-					for (AccountDocument document : documents) {
-						if (document.getDocumentId().equalsIgnoreCase(userRequest.getDocumentId())) {
-						logger.info("Setting document status for : {}",userRequest.getUserId());
-							mapper.map(document, userResponse);
-							userResponse.setUserId(userRequest.getUserId());
-							userResponse.setDocumentStatus(userRequest.getDocumentStatus());
-							responseList.add(userResponse);
-							mapper.map(responseList, userResponse);
+					} else {
+						for (AccountDocument d : documents) {
+							if (d.getDocumentStatus().equals(userRequest.getDocumentStatus())) {
+								throw new CustomException("TEST");
+							} else {
+								d.setDocumentStatus(userRequest.getDocumentStatus());
+							}
 						}
+
+						for (AccountDocument document : documents) {
+							if (document.getDocumentId().equalsIgnoreCase(userRequest.getDocumentId())) {
+								logger.info("Setting document status for : {}", userRequest.getUserId());
+								mapper.map(document, userResponse);
+								userResponse.setUserId(userRequest.getUserId());
+								userResponse.setDocumentStatus(userRequest.getDocumentStatus());
+								responseList.add(userResponse);
+								mapper.map(responseList, userResponse);
+							}
+						}
+						userRepository.save(users);
 					}
 				}
-				}
-				userRepository.save(users);
 			} else {
 				throw new CustomException("userId not found");
 			}
@@ -111,10 +117,8 @@ public class UserService {
 	 * 
 	 * @return
 	 *//*
-	public List<User> deleteInfo() {
-		logger.info("Inside deleteInfo method ");
-		userRepository.deleteAll();
-		return userRepository.findAll();
-	}*/
+		 * public List<User> deleteInfo() { logger.info("Inside deleteInfo method ");
+		 * userRepository.deleteAll(); return userRepository.findAll(); }
+		 */
 
 }
